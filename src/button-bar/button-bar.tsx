@@ -6,6 +6,7 @@ import ActionSheet from '../action-sheet'
 import { varCreator as varCreatorBlank } from '../blank/style'
 import BottomBar from '../bottom-bar'
 import Button from '../button'
+import InitialValue from '../initial-value'
 import Locale from '../locale'
 import Space from '../space'
 import Theme from '../theme'
@@ -13,16 +14,17 @@ import Theme from '../theme'
 import type { ButtonBarProps } from './interface'
 import { varCreator, styleCreator } from './style'
 
-const ButtonBar: React.FC<ButtonBarProps> = ({
-  alone = false,
-  buttons,
-  count = 4,
-  moreText,
-  blankSize = 'm',
+const ButtonBar: React.FC<ButtonBarProps> = props => {
+  const {
+    alone = false,
+    buttons,
+    count = 4,
+    moreText,
+    blankSize = 'm',
 
-  children,
-  ...restProps
-}) => {
+    children,
+    ...restProps
+  } = InitialValue.useInitialProps('ButtonBar', props)
   const locale = Locale.useLocale().ButtonBar
   const TOKENS = Theme.useThemeTokens()
   const CV = Theme.createVar(TOKENS, varCreator)

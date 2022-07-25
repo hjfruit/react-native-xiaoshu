@@ -5,6 +5,7 @@ import { View, Text } from 'react-native'
 import Button from '../button'
 import { getDefaultValue } from '../helpers'
 import { usePersistFn } from '../hooks'
+import InitialValue from '../initial-value'
 import Locale from '../locale'
 import Result from '../result'
 import Space from '../space'
@@ -14,17 +15,18 @@ import type { ProgressPageProps } from './interface'
 import Progress from './progress'
 import { varCreator, styleCreator } from './style'
 
-const ProgressPage: React.FC<ProgressPageProps> = ({
-  children,
-  loading: loadingOut,
-  backgroundColor,
-  defaultPercentage = 10,
-  fail,
-  failMessage,
-  failIcon,
-  onPressReload,
-  extraLoading,
-}) => {
+const ProgressPage: React.FC<ProgressPageProps> = props => {
+  let {
+    children,
+    loading: loadingOut,
+    backgroundColor,
+    defaultPercentage = 10,
+    fail,
+    failMessage,
+    failIcon,
+    onPressReload,
+    extraLoading,
+  } = InitialValue.useInitialProps('ProgressPage', props)
   const locale = Locale.useLocale().ProgressPage
   const TOKENS = Theme.useThemeTokens()
   const CV = Theme.createVar(TOKENS, varCreator)

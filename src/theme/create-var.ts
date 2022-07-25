@@ -6,32 +6,32 @@ type Creator<T> = (v: TokensType) => T
 
 type KeyType = [TokensType, Creator<any>]
 
-const StyleMap: Map<KeyType, any> = new Map()
+const VarMap: Map<KeyType, any> = new Map()
 
 export const createVar = <T>(token: TokensType, creator: Creator<T>): T => {
-  let myStyle: T
+  let myVar: T
 
-  for (let [key, value] of StyleMap) {
+  for (let [key, value] of VarMap) {
     if (key[1] === creator) {
       if (key[0] === token) {
-        myStyle = value
+        myVar = value
       } else {
-        StyleMap.delete(key)
+        VarMap.delete(key)
       }
     }
   }
 
-  if (!myStyle) {
-    myStyle = creator(token)
+  if (!myVar) {
+    myVar = creator(token)
     // 变量覆盖
-    Object.keys(myStyle).forEach(field => {
+    Object.keys(myVar).forEach(field => {
       if (!isNil(token[field])) {
-        myStyle[field] = token[field]
+        myVar[field] = token[field]
       }
     })
 
-    StyleMap.set([token, creator], myStyle)
+    VarMap.set([token, creator], myVar)
   }
 
-  return myStyle
+  return myVar
 }

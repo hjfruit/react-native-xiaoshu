@@ -5,6 +5,7 @@ import { Text, View, TouchableHighlight } from 'react-native'
 import Divider from '../divider'
 import { renderTextLikeJSX, getDefaultValue, getArrowOutline } from '../helpers'
 import { useDebounceFn } from '../hooks'
+import InitialValue from '../initial-value'
 import Theme from '../theme'
 
 import type { CellProps } from './interface'
@@ -14,36 +15,37 @@ import { varCreator, styleCreator } from './style'
  * Cell 单元格
  * @description 单元格为列表中的单个展示项。
  */
-const Cell: React.FC<CellProps> = ({
-  innerStyle,
-  title,
-  titleStyle,
-  titleTextStyle,
-  titleExtra,
-  value,
-  valueStyle,
-  valueTextStyle,
-  valueExtra,
-  contentStyle,
-  divider = true,
-  dividerLeftGap,
-  dividerRightGap,
-  isLink = false,
-  onPressLink,
-  center = false,
-  arrowDirection = 'right',
-  required = false,
-  vertical = false,
-  valueTextNumberOfLines,
-  titleTextNumberOfLines,
-  textAlign = 'right',
-  onPressDebounceWait = 0,
+const Cell: React.FC<CellProps> = props => {
+  let {
+    innerStyle,
+    title,
+    titleStyle,
+    titleTextStyle,
+    titleExtra,
+    value,
+    valueStyle,
+    valueTextStyle,
+    valueExtra,
+    contentStyle,
+    divider = true,
+    dividerLeftGap,
+    dividerRightGap,
+    isLink = false,
+    onPressLink,
+    center = false,
+    arrowDirection = 'right',
+    required = false,
+    vertical = false,
+    valueTextNumberOfLines,
+    titleTextNumberOfLines,
+    textAlign = 'right',
+    onPressDebounceWait = 0,
 
-  // 原生组件属性
-  underlayColor,
-  style,
-  ...restProps
-}) => {
+    // 原生组件属性
+    underlayColor,
+    style,
+    ...restProps
+  } = InitialValue.useInitialProps('Cell', props)
   const TOKENS = Theme.useThemeTokens()
   const CV = Theme.createVar(TOKENS, varCreator)
   const STYLES = Theme.createStyle(CV, styleCreator)

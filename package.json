@@ -52,7 +52,7 @@
     "release:minor": "release-it minor",
     "release:patch": "release-it patch",
     "release:major:beta": "release-it major --preRelease=beta",
-    "release:minor:beta": "release-it minor --preRelease=beta",
+    "release:minor:beta": "release-it minor --preRelease=beta --npm.tag=next",
     "release:patch:beta": "release-it patch --preRelease=beta"
   },
   "dependencies": {

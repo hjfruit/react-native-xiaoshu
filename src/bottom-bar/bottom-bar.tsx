@@ -5,22 +5,24 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { varCreator as varCreatorDivider } from '../divider/style'
 import { getDefaultValue } from '../helpers'
+import InitialValue from '../initial-value'
 import Theme from '../theme'
 
 import type { BottomBarProps } from './interface'
 import { varCreator } from './style'
 
-const BottomBar: React.FC<BottomBarProps> = ({
-  safeAreaInsetBottom = true,
-  backgroundColor,
-  height,
-  hidden = false,
-  keyboardShowNotRender = true,
-  divider = true,
+const BottomBar: React.FC<BottomBarProps> = props => {
+  let {
+    safeAreaInsetBottom = true,
+    backgroundColor,
+    height,
+    hidden = false,
+    keyboardShowNotRender = true,
+    divider = true,
 
-  style,
-  ...restProps
-}) => {
+    style,
+    ...restProps
+  } = InitialValue.useInitialProps('BottomBar', props)
   const { bottom } = useSafeAreaInsets()
   const TOKENS = Theme.useThemeTokens()
   const CV = Theme.createVar(TOKENS, varCreator)

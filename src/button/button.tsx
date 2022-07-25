@@ -6,6 +6,7 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 import { getDefaultValue } from '../helpers'
 import { useDebounceFn } from '../hooks'
+import InitialValue from '../initial-value'
 import Loading from '../loading'
 import Theme from '../theme'
 
@@ -16,27 +17,28 @@ import { varCreator, styleCreator } from './style'
  * Button 按钮
  * @description 按钮用于触发一个操作，如提交表单。
  */
-const Button: React.FC<ButtonProps> = ({
-  children,
-  style,
-  text,
-  textStyle,
-  type = 'primary',
-  danger = false,
-  size = 'l',
-  hairline = false,
-  disabled = false,
-  loading = false,
-  loadingText,
-  square = false,
-  round = false,
-  renderLeftIcon,
-  color,
-  textColor,
-  onPressDebounceWait = 0,
+const Button: React.FC<ButtonProps> = props => {
+  let {
+    children,
+    style,
+    text,
+    textStyle,
+    type = 'primary',
+    danger = false,
+    size = 'l',
+    hairline = false,
+    disabled = false,
+    loading = false,
+    loadingText,
+    square = false,
+    round = false,
+    renderLeftIcon,
+    color,
+    textColor,
+    onPressDebounceWait = 0,
 
-  ...restProps
-}) => {
+    ...restProps
+  } = InitialValue.useInitialProps('Button', props)
   const TOKENS = Theme.useThemeTokens()
   const CV = Theme.createVar(TOKENS, varCreator)
   const STYLES = Theme.createStyle(CV, styleCreator)

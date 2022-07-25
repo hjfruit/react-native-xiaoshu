@@ -3,6 +3,7 @@ import React, { isValidElement, memo } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import { getDefaultValue } from '../helpers'
+import InitialValue from '../initial-value'
 import Theme from '../theme'
 
 import type { LoadingProps } from './interface'
@@ -14,18 +15,19 @@ import { varCreator } from './style'
  * Loading 加载
  * 加载图标，用于表示加载中的过渡状态。
  */
-const Loading: React.FC<LoadingProps> = ({
-  children,
-  style,
-  textStyle,
-  size,
-  color,
-  textSize,
-  vertical = false,
-  type = 'circular',
+const Loading: React.FC<LoadingProps> = props => {
+  const {
+    children,
+    style,
+    textStyle,
+    size,
+    color,
+    textSize,
+    vertical = false,
+    type = 'circular',
 
-  ...restProps
-}) => {
+    ...restProps
+  } = InitialValue.useInitialProps('Loading', props)
   const TOKENS = Theme.useThemeTokens()
   const CV = Theme.createVar(TOKENS, varCreator)
   const ICON_COLOR = getDefaultValue(color, CV.loading_icon_color)
