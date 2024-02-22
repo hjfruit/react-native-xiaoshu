@@ -144,20 +144,6 @@
       "prettier --write"
     ]
   },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
-  },
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",

@@ -2,3 +2,4 @@ src/**/__fixtures__
 src/__fixtures__
 lib
 changelog.config.js
+bob.config.js
